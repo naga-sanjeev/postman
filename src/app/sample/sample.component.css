@@ -1,0 +1,61 @@
+.container{
+    margin:20px 30px;
+    padding:20px 30px;
+    background-color: yellow;
+}
+h1{
+    margin:20px 30px;
+    padding:20px 30px;
+    border-color: pink;
+    background-color: #ffff00;
+    border-style:solid;
+}
+h1:hover{
+    background-color: transparent;
+}
+p{
+    margin:20px 30px;
+    padding:20px 30px;
+    background-color: yellow;
+    border-color:pink;
+    border-style:dashed
+}
+span{
+    color:red;
+    
+}
+
+.icon{
+display: none;
+}
+
+.required-asterisk{
+    color: red;
+    font-weight: bold;
+    margin-left: 3px;
+    font-size: 1.2em;
+}
+
+.required-fieldbefore::before {
+    content:'*';
+    color:red;
+    margin:1%
+}
+
+.required-fieldafter::after{
+    content:'*';
+    color:red;
+    margin:1%
+}
+
+.class1{
+   background: blue;
+   border-color: green;
+   border-style: solid;
+}
+
+.class2{
+    background: pink;
+    border-color: yellow;
+    border-style: solid;
+}

@@ -1,0 +1,35 @@
+<div class="tp-wrapper" >
+    <div clas="grid " [style]="{'margin-left':'3%','margin-right':'2%'}" (click)="toggleFlip()" [@flipState]="flip" >   
+        <div class="col-4   tp-box__side tp-box__front">
+            <p-card header=""  [style]="{'height':'97vh'}" >
+                <ng-template  pTemplate="header"   >
+                    <img alt="Card" src="\assets\images\shirt.webp">
+                </ng-template>
+                <div class="grid">
+                    <p-button label="shirt" class=" col-6 p-fluid"></p-button>
+                    <p-button label="$5" class=" col-6 p-fluid" ></p-button>
+                </div>
+                <ng-template pTemplate="footer">
+                    <div class="grid">
+                       
+                    </div>
+                 </ng-template>
+            </p-card>
+        </div>
+        <div class="col-4 tp-box__side tp-box__back">
+            <p-card header=""  [style]="{'height':'97vh'}" >
+                <ng-template  pTemplate="header"  [st>
+                  
+                </ng-template>
+               <h1>Description</h1>
+                <ng-template pTemplate="footer">
+                    <div class="grid">
+                       
+                    </div>
+                 </ng-template>
+            </p-card>
+        </div>   
+    </div>
+</div>
+
+

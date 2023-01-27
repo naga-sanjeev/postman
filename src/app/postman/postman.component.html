@@ -1,0 +1,246 @@
+<p-toast position="top-center" key="tc" [style]="{'background-color':'green','color':'white'}"></p-toast>
+<p-toast position="top-left" key="tf"></p-toast>
+<div [style]="{'margin-left':'3%','margin-right':'2%'}">
+
+    <p-card [style]="{'height':'99vh'}">
+        <ng-template pTemplate="header" style="height:10vh">
+
+            <div *ngIf="mobile">
+
+               
+
+                <form [formGroup]="headform">
+                    <div class="grid">
+                        <p-dropdown [options]="methods" optionLabel="name" optionValue="name" type="button"
+                            class="p-grid col-2  p-fluid" [style]="{'margin-left':'5%','height':'6vh'}"
+                            placeholder="select method" formControlName="dropdoun" (onChange)="onChange()"
+                            [showClear]="false">
+                         </p-dropdown>   
+                     <!-- <p-dropdown  
+                            class=" col-2  p-fluid" 
+                            placeholder="select method" formControlName="dropdoun">
+                        </p-dropdown> -->
+
+                        <input type="text" class="grid col-6" placeholder="enter url"
+                            style='margin-left:1%;margin-top:auto;margin-bottom:auto;height:6vh'
+                            formControlName="newurl1" pInputText>
+                        <!-- <p-button label="send"  [disabled]="headform.invalid" class="p-grid col-2 p-fluid" [style]="{'margin-left':'12%'}" (click)="send()"></p-button> -->
+                        <button pButton label="send"
+                            *ngIf="getheaderurl && !postheaderurl && sendbutton2 && !historybutton"
+                            [disabled]="headform.invalid" class="p-grid col-2 p-fluid "
+                            [style]="{'margin-left':'2%','height':'6vh','margin-top':'0.5%'}" (click)="send()"></button>
+                        <button pButton label="send"
+                            *ngIf="getheaderurl && !postheaderurl && !sendbutton2 && historybutton"
+                            [disabled]="headform.invalid" class="p-grid col-2 p-fluid "
+                            [style]="{'margin-left':'2%','height':'6vh','margin-top':'0.8%'}" (click)="send()"></button>
+                        <button pButton label="send"
+                            *ngIf="!getheaderurl && postheaderurl && !jsondisable && formdatadisable "
+                            [disabled]="headform.invalid || postOrder.invalid" class="p-grid col-2 p-fluid "
+                            [style]="{'margin-left':'2%','height':'6vh','margin-top':'0.6%'}" (click)="send()"></button>
+                        <button pButton label="send"
+                            *ngIf=" !getheaderurl && postheaderurl && jsondisable && !formdatadisable"
+                            [disabled]=" headform.invalid || jsonform.invalid" class="p-grid col-2 p-fluid "
+                            [style]="{'margin-left':'2%','height':'6vh','margin-top':'0.6%'}" (click)="send()"></button>
+
+                        <button pButton *ngIf="sendbutton2 && !historybutton" icon="pi pi-history"
+                            class="p-grid col-1 p-fluid "
+                            [style]="{'margin-left':'2%','margin-top':'0.5%','height':'6vh'}"
+                            routerLink="/history"></button>
+                        <button pButton *ngIf="!sendbutton2 && historybutton" icon="pi pi-history"
+                            class="p-grid col-1 p-fluid "
+                            [style]="{'margin-left':'2%','margin-top':'0.7%','height':'6vh'}"
+                            routerLink="/history"></button>
+                       
+                    </div>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="text-danger"
+                        *ngIf="headform.controls.newurl1.errors?.required && headform.controls.newurl1?.touched "
+                        style="color:red">URL is required </span>
+                   
+                </form>
+
+            </div>
+
+            
+
+
+            <form [formGroup]="headform" *ngIf="!mobile">
+                <div class="grid">
+                    <p-dropdown type="button" class="p-grid col-6 p-fluid" [style]="{'margin-left':'1%','height':'6vh'}"
+                        formControlName="dropdoun" [options]="methods" styleClass="" optionLabel="name"
+                        (onChange)="onChange()" [showClear]="false">
+                    </p-dropdown>
+
+
+                  
+                    <button label="send" *ngIf="!mobile2 && !mobile3 && !mobile4" class="grid col-6 "
+                        [disabled]="headform.invalid" pButton type="button"
+                        style="margin-top:auto;margin-bottom:auto;height:6vh;margin-left:0.2rem;width:48%"
+                        (click)="send()"></button>
+                    <button label="send" *ngIf="mobile2 && !mobile3 && !mobile4" class="grid col-6 "
+                        [disabled]="headform.invalid" pButton type="button"
+                        style="margin-top:auto;margin-bottom:auto;height:6vh;margin-left:0.4rem;width:47%"
+                        (click)="send()"></button>
+                    <button label="send" *ngIf="mobile3 && !mobile4" class="grid col-6 " [disabled]="headform.invalid"
+                        pButton type="button"
+                        style="margin-top:auto;margin-bottom:auto;height:6vh;margin-left:0.3rem;width:47%"
+                        (click)="send()"></button>
+                    <button label="send" *ngIf="mobile4" class="grid col-6 "
+                        [disabled]="headform.invalid || postOrder.get('key').invalid || postOrder.get('value').invalid || postOrder.get('items').invalid"
+                        pButton type="button"
+                        style="margin-top:auto;margin-bottom:auto;height:6vh;margin-left:0.2rem;width:47%"
+                        (click)="send()"></button>
+
+                </div>
+                <div class="grid grid-nogutter" *ngIf="!mobile">
+                    <input type="text" class=" grid col-12 " placeholder="enter url" formControlName="newurl1"
+                        style="margin-left:0.5%;margin-top:0.5%;height:6vh;width:99%;color:red" pInputText>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="text-danger"
+                        *ngIf="headform.controls.newurl1.errors?.required && headform.controls.newurl1?.touched ">URL is
+                        required </span>
+                </div>
+            </form>
+
+
+        </ng-template>
+
+        <div [style]="{'height':'35vh'}" *ngIf="body">
+            <div class="field-radiobutton" *ngIf="display">
+                <p-radioButton name="button1" value="form-data" [(ngModel)]="button1" inputId="btn2" label="form-data"
+                    (onClick)="onItemChange1()"></p-radioButton>
+                <p-radioButton name="button1" value="JSON" [style]="{'margin-left':'5%'}" [(ngModel)]="button1"
+                    inputId="btn3" label="JSON" (onClick)="onItemChange1()"></p-radioButton>
+            </div>
+            <div *ngIf="json && display ">
+                <form [formGroup]="jsonform">
+                    <textarea pInputTextarea class="bodytextarea" rows="5" cols="1000"
+                        style="width:100%;height:25vh;float:left;" formControlName="jsondata"> </textarea>
+                    <span class="text-danger"
+                        *ngIf="jsonform.controls.jsondata.errors?.required && jsonform.controls.jsondata?.touched">JSON
+                        data is required</span>
+                </form>
+            </div>
+
+            <div *ngIf="formdata">
+                <div>
+                    <form [formGroup]="postOrder">
+
+                        <div class="form-group">
+                            <input pInputText formControlName="key" placeholder="Key"
+                                style="margin-left:1%;margin-bottom:0.8%;">
+                            <input pInputText formControlName="value" placeholder="Value"
+                                style="margin-left:1%; margin-bottom:0.8%">
+                            
+                            <button label="ADD" [disabled]=" postOrder.invalid " (click)="add()"
+                                [style]="{'margin-left':'1%','margin-bottom':'0.8%'}" pButton></button>
+
+                            <div>
+                                &nbsp; &nbsp;&nbsp;
+                                <span class="text-danger"
+                                    *ngIf="postOrder.controls.key.errors?.required && postOrder.controls.key?.touched"
+                                    style="color:red">Key is required </span>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span class="text-danger"
+                                    *ngIf="postOrder.controls.value.errors?.required && postOrder.controls.value?.touched"
+                                    style="color:red">Value is required</span>
+                            </div>
+                        </div>
+
+
+
+ 
+
+
+                        <div formArrayName="items"
+                            *ngFor="let item of postOrder.get('items').controls ; let i = index;">
+                            <div [formGroupName]="i">
+                                <div class="form-group">
+                                    <input pInputText style="margin-left:1%;margin-bottom: 0.8%;" formControlName="key"
+                                        placeholder="Key">
+                                    <input pInputText style="margin-left:1%;margin-bottom:0.8%" formControlName="value"
+                                        placeholder="Value">
+                                    <button label="Remove" pButton (click)="remove(i)"
+                                        [style]="{'margin-left':'1%','margin-bottom':'0.8%'}"></button>
+                                    <div>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <span class="text-danger"
+                                            *ngIf="postOrder.controls.items.controls[i].get('key').errors?.required && postOrder.controls.items.controls[i].get('key')?.touched"
+                                            style="color:red">Key is required</span>
+                                        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <span class="text-danger"
+                                            *ngIf="postOrder.controls.items.controls[i].get('value').errors?.required && postOrder.controls.items.controls[i].get('value')?.touched"
+                                            style="color:red">Value is required</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+           
+
+        </div>
+
+        <ng-template pTemplate="footer">
+
+            <div *ngIf="output && displayfooter ">
+
+                <div class="field-radiobutton  ">
+                    <p-radioButton name="button" value="Raw" [(ngModel)]="button" inputId="btn4" label="Raw"
+                        (onClick)="onItemChange()"></p-radioButton>
+                    <p-radioButton name="button" value="Preview" [style]="{'margin-left':'5%'}" [(ngModel)]="button"
+                        inputId="btn5" label="Preview" (onClick)="onItemChange()"></p-radioButton>
+                   
+                    <p class="status footer-icons"> Status code:{{statuscode}}</p>
+                 
+                </div>
+
+               
+
+                <div *ngIf="!footerraw && !footerpreview " style="margin-bottom:2%">
+                    <textarea *ngIf="rawdata && !previewdata" pInputTextarea rows="5" col="1000"
+                        style="width:100%;height:25vh;margin-top: 2%;">
+                       {{value|json}}
+                    </textarea>
+
+                    <textarea pInputTextarea *ngIf="previewdata && !rawdata" rows="5" col="1000"
+                        style="width:100%;height:25vh;margin-top: 2%;">
+                        {{data}}
+                    </textarea>
+
+
+
+
+                </div>
+
+                <div *ngIf="footerraw && footerpreview ">
+                    <textarea *ngIf="rawdata && !previewdata" pInputTextarea rows="5" col="1000"
+                        style="width:100%;height:23vh;margin-top: 2%;">
+                       {{value|json}}
+                    </textarea>
+
+                    <textarea pInputTextarea *ngIf="previewdata && !rawdata" rows="5" col="1000"
+                        style="width:100%;height:23vh;margin-top: 2%;">
+                        {{data}}
+                    </textarea>
+                </div>
+
+
+
+            </div>
+        </ng-template>
+
+    </p-card>
+
+</div>
+
+
+
+
+
+

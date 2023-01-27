@@ -1,0 +1,116 @@
+<!-- <p>historytab works!</p> -->
+<!-- {{recievedata2[0].st}} -->
+<!-- <div >
+    <table>
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>URL</th>
+                <th>Method</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of recievedata2">
+                <td>{{x.st}}</td>
+                <td>{{x.ul}}</td>
+                <td>{{x.me}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
+
+<!-- {{history.st}}{{history.ul}}{{history.me}}
+{{status}}
+{{url}}
+{{method}} -->
+
+<div  [style]="{'margin-left':'3%','margin-right':'2%'}">
+    <p-card [style]="{'height':'97vh'}" >
+        <p-table [value]="recievedata3">
+
+            
+            <ng-template pTemplate="caption">
+                <div class="table-header" [style]="{'text-align':'center'}">
+                   History
+                    <button pButton label="Back" routerLink="/post" [style]="{'height':'4vh','float':'right'}"></button>
+                </div>
+            </ng-template>
+           
+            
+            <ng-template pTemplate="header" >
+                <tr  >
+                    <th  [style]="{'text-align':'center'}">S.No</th>
+                    <th  [style]="{'text-align':'center'}">Method</th>
+                    <th  [style]="{'text-align':'center'}">Stataus</th>
+                    <th  [style]="{'text-align':'center'}">URL</th>
+                    <th> </th>
+                </tr>
+            </ng-template>
+           <ng-template pTemplate="body" let-recievedata3 let-i="rowIndex">
+                <tr >
+                    <td [style]="{'text-align':'center'}"> {{i+1}}</td>
+                    <td  [style]="{'text-align':'center'}">{{recievedata3.stmethod}}</td>
+                    <td  [style]="{'text-align':'center'}">{{recievedata3.stcode}}</td>
+                    <td  [style]="{'text-align':'center'}">{{recievedata3.sturl}}</td>
+                    <td> <button label="Get Data" pButton [style]="{'height':'5vh','float':'right'}" routerLink="/post" (click)="getdata(i)"></button> </td>
+                    
+                </tr>
+           </ng-template> 
+       
+
+      
+              
+                <!-- <ng-template pTemplate="header" >
+                    <tr  >
+                        <th  [style]="{'text-align':'center'}">S.No</th>
+                        <th  [style]="{'text-align':'center'}">Method</th>
+                        <th  [style]="{'text-align':'center'}">Stataus</th>
+                        <th  [style]="{'text-align':'center'}">URL</th>
+                    </tr>
+                </ng-template>
+                 
+               <ng-template pTemplate="body"  >
+                <tr *ngFor="let data of recievedata3; let i=index">
+                    <td  [style]="{'text-align':'center'}">{{i+1}}</td>
+                    <td  [style]="{'text-align':'center'}">{{data.stmethod}}</td>
+                    <td  [style]="{'text-align':'center'}">{{data.stcode}}</td>
+                    <td  [style]="{'text-align':'center'}">{{data.sturl}}</td>
+                </tr>
+               </ng-template> -->
+              
+
+        
+        </p-table>
+    </p-card>
+</div>
+
+
+
+
+<!-- <p-table [value]="recievedata2">
+    <ng-template pTemplate="caption">
+        <div class="table-header" >
+            History
+           
+        </div>
+    </ng-template>
+    <div >
+    
+    </div>
+    <ng-template pTemplate="header" >
+        <tr  >
+            <th  >Method</th>
+            <th >Stataus</th>
+            <th  >URL</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-recievedata2>
+        <tr>
+            <td  [style]="{'text-align':'center'}"><a routerLink="/post">{{recievedata3.stmethod}}</a></td>
+            <td  >{{recievedata2.me}}</td>
+            <td  >{{recievedata2.st}}</td>
+            <td  >{{recievedata2.ul}}</td>
+        </tr>
+    </ng-template>
+</p-table> -->
+
